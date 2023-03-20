@@ -1,6 +1,6 @@
 # DB-Table-Editor-Generator
 Command line tool that creates a web page editor for every table in an SQL database
-### Database Table Editors Generator
+
 This project is a command line tool that generates a a full CRUD database table editor 
 HTML page for each table in an SQL database and an index.html menu page to access them.  
 
