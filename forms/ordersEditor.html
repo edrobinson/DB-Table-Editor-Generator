@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Orders Editor</title>
+    <meta name="title" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="10 days">
+
+    <!-- Google Fonts -->
+    <link href=https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    
+    <!-- Local CSS Files -->
+    <!--<link href="main.css" rel="stylesheet">-->
+    <link href="assets/css/style.css"  rel="stylesheet">
+  </head>
+<body>
+
+    <div class="container">
+     <div classs="row" style="text-align: center; Margin-top: 5%;">
+          <h3>Orders Editor</h3>
+      </div>  
+      <form id="form1" name="form1" style="padding-top: 2%; width: 75%; margin-left: 3%; margin-top: 1%;"> 
+         <!-- The requested server opertion -->
+         <input type="hidden" id="opcode" name="opcode"/>
+         <!-- The table being edited -->
+         <input type="hidden" id="table" name="table" value="orders"/>
+         <!-- The column to do readby on -->
+         <input type="hidden" id="readbycolumn" name="readbycolumn" value="name"/>
+
+         <!-- The DB table record PK - id -->
+         <input type="hidden" id="id" name="id"/>
+    <br/><br/>
+    <div class="form-actions btn-group" style="margin-left: 25%">
+        <button accesskey="I" type="button" class="btn btn-primary" onclick="handleRequest('insert')"><u>I</u>nsert</button>
+        
+        <button accesskey="F" type="button" class="btn btn-primary" onclick="handleRequest('readfirst')"><u>F</u>irst</button>
+        
+        <button accesskey="P" type="button" class="btn btn-primary" onclick="handleRequest('readprev')"><u>P</u>rev</button>
+        
+        <button accesskey="R" type="button" class="btn btn-primary" 
+        onclick="handleRequest('read')"><u>R</u>ead</button>
+        
+        <button accesskey="N" type="button" class="btn btn-primary" onclick="handleRequest('readnext')"><u>N</u>ext</button>
+        
+        <button accesskey="S" type="button" class="btn btn-primary" onclick="handleRequest('readlast')">La<u>s</u>t</button>
+        
+        <!--<button accesskey="L" type="button" class="btn btn-primary" onclick="handleRequest('lookup')"><u>L</u>ookup</button>-->
+        
+        <button accesskey="U" type="button" class="btn btn-primary" onclick="handleRequest('update')"><u>U</u>pdate</button>
+        
+        <button accesskey="D" type="button" class="btn btn-primary" onclick="handleRequest('delete')">De<u>l</u>ete</button>
+        
+        <button accesskey="T" type="button"  class="btn btn-primary" 
+        onclick="formReset()">Rese<u>t</u></button>
+        
+        <button type="button" class="btn btn-primary" onclick="history.back()">Back</button>        
+        
+    </div>
+    <br/><br/>
+
+          <div class="form-group row mb-1">
+              <label for="name" class="col-sm-4 col-form-label">Name:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="name" name="name"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="address" class="col-sm-4 col-form-label">Address:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="address" name="address"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="address2" class="col-sm-4 col-form-label">Address2:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="address2" name="address2"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="city" class="col-sm-4 col-form-label">City:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="city" name="city"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="zip" class="col-sm-4 col-form-label">Zip:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="zip" name="zip"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="state" class="col-sm-4 col-form-label">State:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="state" name="state"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="country" class="col-sm-4 col-form-label">Country:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="country" name="country"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="email" class="col-sm-4 col-form-label">Email:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="email" name="email"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="numcopies" class="col-sm-4 col-form-label">Numcopies:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="numcopies" name="numcopies"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="message" class="col-sm-4 col-form-label">Message:</label>
+              <div class="col-sm-8">
+                  <textarea class="form-control" id="message" name="message"></textarea>
+              </div>
+          </div>
+
+          <div class="form-group row mb-1">
+              <label for="bookid" class="col-sm-4 col-form-label">Bookid:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="bookid" name="bookid"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="price" class="col-sm-4 col-form-label">Price:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="price" name="price"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="status" class="col-sm-4 col-form-label">Status:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="status" name="status"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="ordernum" class="col-sm-4 col-form-label">Ordernum:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="ordernum" name="ordernum"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="orderdate" class="col-sm-4 col-form-label">Orderdate:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="orderdate" name="orderdate"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="shipdate" class="col-sm-4 col-form-label">Shipdate:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="shipdate" name="shipdate"/>
+              </div>
+          </div>
+
+
+          <div class="form-group row mb-1">
+              <label for="shipping" class="col-sm-4 col-form-label">Shipping:</label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="shipping" name="shipping"/>
+              </div>
+          </div>
+
+
+      </form>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
+<!-- JS for server communication -->
+<script src="assets/js/formgen.js"></script>
+</body>
+</html>
+
+
+
