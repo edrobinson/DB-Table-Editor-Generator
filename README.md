@@ -59,7 +59,7 @@ Having said that, here are the DB oriented things you need to be aware of.
    - **opcode** carries the method code for the requested DB operation.
    - **table** carries the name of the table that the form is for.
    - **readbycolumn** carries the name of the column used by the crud read method which is actually a select* where column = value.  
-   This input determines that column and it's value from the from the row values. The first column after the PK is used.
+   This input determines that column and it's value from the from the row values. The first column after the PK is used if not provided.
    - **id** carries the current rows PK value.      
    **Do not change these or the CRUD services won't work.**
    
@@ -86,7 +86,7 @@ Ezsql accomodates several other sql databasess such
 
 The tool uses a set of templates that it loads and does simple string replacement on embedded tags.
 
-As each template is needed it is added to the page being built using form_get_contents() and str_replace() is used to substitute the tags. 
+As each template is needed it is added to the page being built using file_get_contents() and str_replace() is used to substitute the tags. 
 
 The templates that are included use my own code style. Please read the templates and feel free to alter them to fit your needs.
 
