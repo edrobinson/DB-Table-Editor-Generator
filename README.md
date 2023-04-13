@@ -66,7 +66,7 @@ Having said that, here are the DB oriented things you need to be aware of.
    I mention these elements in case you want to provide your own templates. See below...
 3. The page captions are table name + "Editor."  
 
-Ezsql accomodates several other sql databasess such
+Ezsql accomodates several other sql databasess if you need them. 
    
 ###### Start of the Form code:   
 ```
